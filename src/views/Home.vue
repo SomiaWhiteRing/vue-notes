@@ -1,11 +1,11 @@
 <!-- 我的页面 -->
 <template>
   <div class='my_page'>
-    <el-container>
-      <el-header>Header</el-header>
-      <el-main>Main</el-main>
-      <el-footer>Footer</el-footer>
-    </el-container>
+    <router-view />
+    <ul>
+      <li><router-link :to="{name: 'List'}">记事列表</router-link></li>
+      <li><router-link :to="{name: 'User'}">用户中心</router-link></li>
+    </ul>
   </div>
 </template>
 

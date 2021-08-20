@@ -1,25 +1,26 @@
 <!-- 我的页面 -->
 <template>
   <div class='my_page'>
-    <el-container>
-      <el-header>Header</el-header>
-      <el-main>Main</el-main>
-      <el-footer>Footer</el-footer>
-    </el-container>
+    <p>标题:</p><input type="text" v-model="title"/>
+    <p>内容:</p><input type="text" v-model="content"/>
+    <p><button type="button" @click="add()">添加</button></p>
   </div>
 </template>
 
 <script>
 // 这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 // 例如：import 《组件名称》 from '《组件路径》'
-
+import store from '../store/index.js'
 export default {
+  name: 'Add',
+  store,
   // import引入的组件需要注入到对象中才能使用
   components: {},
   data () {
     // 这里存放数据
     return {
-
+      title: '',
+      content: ''
     }
   },
   // 监听属性 类似于data概念
@@ -43,7 +44,12 @@ export default {
   activated () { }, // 如果页面有keep-alive缓存功能，这个函数会触发
   // 方法集合
   methods: {
-
+    add () {
+      store.commit('addItem', {
+        title: this.title,
+        content: this.content
+      })
+    }
   }
 }
 </script>

@@ -1,11 +1,8 @@
 <!-- 我的页面 -->
 <template>
   <div class='my_page'>
-    <el-container>
-      <el-header>Header</el-header>
-      <el-main>Main</el-main>
-      <el-footer>Footer</el-footer>
-    </el-container>
+    <button type="button" @click="reg()">登录</button>
+    <button type="button">注册</button>
   </div>
 </template>
 
@@ -38,12 +35,17 @@ export default {
   beforeMount () { }, // 生命周期 - 挂载之前
   beforeUpdate () { }, // 生命周期 - 更新之前
   updated () { }, // 生命周期 - 更新之后
-  beforeDestroy () { }, // 生命周期 - 销毁之前
+  beforeDestroy () { }, // 生命周期 - 销毁之前eslint --init
   destroyed () { }, // 生命周期 - 销毁完成
   activated () { }, // 如果页面有keep-alive缓存功能，这个函数会触发
   // 方法集合
   methods: {
-
+    reg () {
+      this.$router.push('/home/list')
+    }
   }
 }
 </script>
+<style scoped>
+
+</style>
