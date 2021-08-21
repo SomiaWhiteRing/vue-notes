@@ -1,6 +1,7 @@
 <!-- 我的页面 -->
 <template>
   <div class='my_page'>
+    <p><button type="button" @click="add()">添加</button></p>
   </div>
 </template>
 
@@ -38,7 +39,9 @@ export default {
   activated () { }, // 如果页面有keep-alive缓存功能，这个函数会触发
   // 方法集合
   methods: {
-
+    add () {
+      this.$router.push('/add')
+    }
   }
 }
 </script>
