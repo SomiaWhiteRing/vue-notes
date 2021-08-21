@@ -1,9 +1,17 @@
 <!-- 我的页面 -->
 <template>
-  <div class='my_page'>
-    <button type="button" @click="reg()">登录</button>
-    <button type="button">注册</button>
-  </div>
+  <form v-if="!inReg">
+    <div class='my_page'>
+      <button type="button" @click="login()">登录</button>
+      <button type="button" @click="goReg()">注册</button>
+    </div>
+  </form>
+  <form v-else>
+    <div class='my_page'>
+      <button type="button" @click="reg()">注册</button>
+      <button type="button" @click="back()">注册</button>
+    </div>
+  </form>
 </template>
 
 <script>
@@ -16,7 +24,7 @@ export default {
   data () {
     // 这里存放数据
     return {
-
+      inReg: false
     }
   },
   // 监听属性 类似于data概念
@@ -40,7 +48,13 @@ export default {
   activated () { }, // 如果页面有keep-alive缓存功能，这个函数会触发
   // 方法集合
   methods: {
-    reg () {
+    goReg () {
+      this.inReg = true
+    },
+    back () {
+      this.inReg = false
+    },
+    login () {
       this.$router.push('/home/list')
     }
   }
