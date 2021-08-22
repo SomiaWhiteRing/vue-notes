@@ -2,7 +2,6 @@
 <template>
   <div class='my_page'>
     <el-menu :default-active="activeIndex"
-    class="el-menu-demo"
     mode="horizontal"
     router
     background-color="#545c64"
@@ -26,7 +25,7 @@ export default {
   data () {
     // 这里存放数据
     return {
-
+      activeIndex: '1'
     }
   },
   // 监听属性 类似于data概念

@@ -1,9 +1,25 @@
 <!-- 我的页面 -->
 <template>
   <div class='my_page'>
-    <p>标题:</p><input type="text" v-model="title"/>
-    <p>内容:</p><input type="text" v-model="content"/>
-    <p><button type="button" @click="add()">添加</button></p>
+    <el-menu
+      mode="horizontal"
+      background-color="#545c64"
+      text-color="#fff"
+      active-text-color="#ffd04b">
+        <el-menu-item>新增记事</el-menu-item>
+    </el-menu>
+    <el-form ref="form" label-width="50px" style="margin-top: 20px">
+      <el-form-item label="标题">
+        <el-input v-model="title"></el-input>
+      </el-form-item>
+      <el-form-item label="内容">
+        <el-input type="textarea" :autosize="{ minRows: 5, maxRows: 10}" v-model="content"></el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="add()">提交</el-button>
+        <el-button @click="back()">返回</el-button>
+      </el-form-item>
+    </el-form>
   </div>
 </template>
 
@@ -51,6 +67,9 @@ export default {
       })
       this.title = ''
       this.content = ''
+      this.$router.push('/home/list')
+    },
+    back () {
       this.$router.push('/home/list')
     }
   }
