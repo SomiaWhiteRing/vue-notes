@@ -1,7 +1,10 @@
 <!-- 我的页面 -->
 <template>
-  <div class='my_page'>
-    <p><button type="button" @click="add()">添加</button></p>
+  <div style="display: flex;justify-content: center;margin-top: 150px">
+    <el-card>
+    <el-row><el-button type="primary" @click="add()">添加新记事</el-button></el-row>
+    <el-row><el-button type="primary" @click="add()">关于本程序</el-button></el-row>
+    </el-card>
   </div>
 </template>
 
@@ -45,3 +48,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .el-row {
+    margin-bottom: 20px;
+  }
+</style>

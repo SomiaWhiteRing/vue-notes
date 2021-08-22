@@ -79,28 +79,44 @@ export default {
     },
     login () {
       if (localStorage.getItem('password') === null) {
-        alert('您还未设置密码!请前往设置密码界面进行初次设置.')
+        this.$notify({
+          title: '您还未设置密码!',
+          message: '请于修改密码界面进行初次设置',
+          type: 'warning'
+        })
         this.inReg = true
         return
       }
       if (this.password === localStorage.getItem('password')) {
         this.$router.push('/home/list')
       } else {
-        alert('密码错误!')
+        this.$notify.error({
+          title: '您输入的密码有误!'
+        })
       }
     },
     reg () {
       if (this.NewPass === this.rePass) {
         if ((localStorage.getItem('password') === null) || (localStorage.getItem('password') === this.password)) {
-          alert('新密码设置成功!现在返回登录界面.')
+          this.$notify({
+            title: '密码设置成功!',
+            message: '现在返回登陆界面',
+            type: 'success'
+          })
           localStorage.setItem('password', this.NewPass)
           this.password = this.NewPass
           this.inReg = false
         } else {
-          alert('旧密码不正确!')
+          this.$notify.error({
+            title: '密码错误!',
+            message: '请检查密码输入是否正确'
+          })
         }
       } else {
-        alert('两次密码输入不相同!')
+        this.$notify.error({
+          title: '两次密码输入不相同!',
+          message: '请检查密码输入是否正确'
+        })
       }
     }
   }

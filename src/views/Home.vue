@@ -1,11 +1,18 @@
 <!-- 我的页面 -->
 <template>
   <div class='my_page'>
+    <el-menu :default-active="activeIndex"
+    class="el-menu-demo"
+    mode="horizontal"
+    router
+    background-color="#545c64"
+    text-color="#fff"
+    active-text-color="#ffd04b"
+    @select="handleSelect">
+      <el-menu-item index="List">记事列表</el-menu-item>
+      <el-menu-item index="User">用户中心</el-menu-item>
+    </el-menu>
     <router-view />
-    <ul>
-      <li><router-link :to="{name: 'List'}">记事列表</router-link></li>
-      <li><router-link :to="{name: 'User'}">用户中心</router-link></li>
-    </ul>
   </div>
 </template>
 
