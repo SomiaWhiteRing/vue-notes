@@ -1,21 +1,37 @@
 <!-- 我的页面 -->
 <template>
-  <form v-if="!inReg">
-    <div class='my_page'>
-      密码:<input type="password" v-model="password"/>
-      <button type="button" @click="login()">登录</button>
-      <button type="button" @click="goReg()">修改密码</button>
+<div style="display: flex;justify-content: center;margin-top: 150px">
+  <el-card class="box-card">
+    <div slot="header">
+      <span v-if="!inReg">登录</span>
+      <span v-if="inReg">修改密码</span>
     </div>
-  </form>
-  <form v-else>
-    <div class='my_page'>
-      旧密码:<input type="text" v-model="password"/>
-      新密码:<input type="password" v-model="NewPass"/>
-      确认密码:<input type="password" v-model="rePass"/>
-      <button type="button" @click="reg()">注册</button>
-      <button type="button" @click="back()">返回</button>
-    </div>
-  </form>
+    <el-form ref="form" :model="form" label-width="80px" v-if="!inReg">
+      <el-form-item label="密码:">
+        <el-input type="password" v-model="password"></el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="login()">登录</el-button>
+        <el-button @click="goReg()">修改密码</el-button>
+      </el-form-item>
+    </el-form>
+    <el-form ref="form" :model="form" label-width="80px" v-else>
+        <el-form-item label="旧密码:">
+          <el-input placeholder="若无请留空" type="text" v-model="password"/>
+        </el-form-item>
+        <el-form-item label="新密码:">
+          <el-input type="text" v-model="NewPass"/>
+        </el-form-item>
+        <el-form-item label="确认密码:">
+          <el-input type="text" v-model="rePass"/>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="reg()">注册</el-button>
+          <el-button @click="back()">返回</el-button>
+        </el-form-item>
+    </el-form>
+  </el-card>
+</div>
 </template>
 
 <script>
@@ -91,5 +107,7 @@ export default {
 }
 </script>
 <style scoped>
-
+.box-card {
+    width: 480px;
+  }
 </style>
