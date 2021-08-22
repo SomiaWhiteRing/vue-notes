@@ -1,11 +1,35 @@
 <!-- 我的页面 -->
 <template>
-  <div style="display: flex;justify-content: center;margin-top: 150px">
-    <el-card>
-    <el-row><el-button type="primary" @click="add()">添加新记事</el-button></el-row>
-    <el-row><el-button type="primary" @click="add()">关于本程序</el-button></el-row>
-    </el-card>
-  </div>
+    <div style="display: flex;justify-content: center;margin-top: 150px">
+      <el-card>
+      <el-row><el-button type="primary" icon='el-icon-edit' @click="add()">添加新记事</el-button></el-row>
+      <el-row><el-button type="primary" icon='el-icon-info' @click="infoVisible = true">关于本程序</el-button></el-row>
+      </el-card>
+      <el-dialog
+        title="关于该程序"
+        :width="dialogWidth"
+        :visible.sync="infoVisible">
+        <el-row type="flex" justify="space-around">
+          基于Vue+ElementUI设计的私人记事簿
+        </el-row>
+        <el-row type="flex">
+          <el-col :span="7"></el-col>
+          <el-col :span="3"><img :width="picWidth" src="../assets/vue.png"></el-col>
+          <el-col :span="3"></el-col>
+          <el-col :span="3"><img :width="picWidth" src="../assets/element.svg"></el-col>
+        </el-row>
+        <el-row type="flex" justify="space-around" style="text-align:center;line-height:200%">
+          您的数据存储于LocalStorage中<br>
+          不会泄露给任何第三方服务
+        </el-row>
+        <el-row type="flex" justify="space-around" style="color:dimgrey;">
+          © 2021 SomiaWhiteRing.
+        </el-row>
+        <span slot="footer" class="dialog-footer">
+          <el-button type="primary" @click="infoVisible = false">我已了解</el-button>
+        </span>
+      </el-dialog>
+    </div>
 </template>
 
 <script>
@@ -18,7 +42,7 @@ export default {
   data () {
     // 这里存放数据
     return {
-
+      infoVisible: false
     }
   },
   // 监听属性 类似于data概念
@@ -27,11 +51,15 @@ export default {
   watch: {},
   // 生命周期 - 创建完成（可以访问当前this实例）
   created () {
-
+    this.setDialogWidth()
   },
   // 生命周期 - 挂载完成（可以访问DOM元素）
   mounted () {
-
+    window.onresize = () => {
+      return (() => {
+        this.setDialogWidth()
+      })()
+    }
   },
   beforeCreate () { }, // 生命周期 - 创建之前
   beforeMount () { }, // 生命周期 - 挂载之前
@@ -44,6 +72,17 @@ export default {
   methods: {
     add () {
       this.$router.push('/add')
+    },
+    setDialogWidth () {
+      const val = document.body.clientWidth
+      const def = 600 // 默认宽度
+      if (val < 1.2 * def) {
+        this.dialogWidth = parseInt(0.9 * val) + 'px'
+        this.picWidth = parseInt(0.15 * val) + 'px'
+      } else {
+        this.dialogWidth = def + 'px'
+        this.picWidth = '90px'
+      }
     }
   }
 }
