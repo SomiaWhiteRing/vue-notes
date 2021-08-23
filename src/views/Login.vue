@@ -103,6 +103,11 @@ export default {
         return
       }
       if (this.password === localStorage.getItem('password')) {
+        this.$notify({
+          title: '登录成功！',
+          type: 'success'
+        })
+        localStorage.setItem('Flag', 'isLogin')
         this.$router.push('/home/list')
       } else {
         this.$notify.error({
