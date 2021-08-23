@@ -104,11 +104,13 @@ export default {
             message: '现在返回登陆界面',
             type: 'success'
           })
-          store.commit('addItem', {
-            title: '欢迎来到轻记事！',
-            content: '您可以在这里自由记录您的想法而不受任何第三方服务的监控。',
-            date: this.getdate()
-          })
+          if (localStorage.getItem('password') === null) {
+            store.commit('addItem', {
+              title: '欢迎来到轻记事！',
+              content: '您可以在这里自由记录您的想法而不受任何第三方服务的监控。',
+              date: this.getdate()
+            })
+          }
           localStorage.setItem('password', this.NewPass)
           this.password = this.NewPass
           this.inReg = false
