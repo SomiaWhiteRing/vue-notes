@@ -7,7 +7,7 @@
       <span v-if="inReg">修改密码</span>
     </div>
     <el-form ref="form" :model="form" label-width="80px" v-if="!inReg">
-      <el-form-item label="密码:">
+      <el-form-item label="密码">
         <el-input type="password" v-model="password"></el-input>
       </el-form-item>
       <el-form-item>
@@ -16,13 +16,13 @@
       </el-form-item>
     </el-form>
     <el-form ref="form" :model="form" label-width="80px" v-else>
-        <el-form-item label="旧密码:">
+        <el-form-item label="旧密码">
           <el-input placeholder="若无请留空" type="text" v-model="password"/>
         </el-form-item>
-        <el-form-item label="新密码:">
+        <el-form-item label="新密码">
           <el-input type="text" v-model="NewPass"/>
         </el-form-item>
-        <el-form-item label="确认密码:">
+        <el-form-item label="确认密码">
           <el-input type="text" v-model="rePass"/>
         </el-form-item>
         <el-form-item>
@@ -116,12 +116,12 @@ export default {
           if (localStorage.getItem('password') === null) {
             store.commit('addItem', {
               title: '欢迎来到轻记事！',
-              content: '您可以在这里自由记录您的想法而不受任何第三方服务的监控。',
+              content: '您可以在这里自由记录您的想法，不受任何第三方服务的监控。\n现在就前往个人中心开始你的第一次记事吧！',
               date: this.getdate()
             })
           }
           this.$notify({
-            title: '密码设置成功!',
+            title: '密码设置成功！',
             message: '现在返回登陆界面',
             type: 'success'
           })
@@ -130,13 +130,13 @@ export default {
           this.inReg = false
         } else {
           this.$notify.error({
-            title: '密码错误!',
+            title: '密码错误！',
             message: '请检查密码输入是否正确'
           })
         }
       } else {
         this.$notify.error({
-          title: '两次密码输入不相同!',
+          title: '两次密码输入不相同！',
           message: '请检查密码输入是否正确'
         })
       }
