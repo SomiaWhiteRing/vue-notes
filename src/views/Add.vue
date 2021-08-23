@@ -66,6 +66,11 @@ export default {
         content: this.content,
         date: this.getdate()
       })
+      this.$notify({
+        title: '记事已成功提交',
+        message: '返回记事列表界面',
+        type: 'success'
+      })
       this.title = ''
       this.content = ''
       this.$router.push('/home/list')

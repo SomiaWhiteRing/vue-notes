@@ -6,8 +6,7 @@
     router
     background-color="#545c64"
     text-color="#fff"
-    active-text-color="#ffd04b"
-    @select="handleSelect">
+    active-text-color="#ffd04b">
       <el-menu-item index="List">记事列表</el-menu-item>
       <el-menu-item index="User">用户中心</el-menu-item>
     </el-menu>
