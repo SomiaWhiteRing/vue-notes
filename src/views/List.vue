@@ -104,6 +104,7 @@ export default {
     },
     handleDelete (index) {
       this.$confirm('此操作将永久删除该篇记事, 是否继续?', '警告', {
+        cancelButtonClass: 'btn-custom-cancel',
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
@@ -123,3 +124,9 @@ export default {
   }
 }
 </script>
+<style scoped>
+  .btn-custom-cancel {
+    float: right;
+    margin-left: 10px;
+  }
+</style>
