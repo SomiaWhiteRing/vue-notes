@@ -9,6 +9,9 @@
         title="关于该程序"
         :width="dialogWidth"
         :visible.sync="infoVisible">
+        <el-row type="flex" justify="space-around" style="font-size: 25px;font-weight: bold;">
+          轻记事
+        </el-row>
         <el-row type="flex" justify="space-around">
           基于Vue+ElementUI设计的私人记事簿
         </el-row>
