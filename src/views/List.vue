@@ -32,7 +32,7 @@
       :width="dialogWidth">
       <el-row style="font-size: 25px;font-weight: bold;">{{title}}</el-row>
       <el-row style="font-size: 14px;padding-top: 5px;">{{date}}</el-row>
-      <el-row style="font-size: 20px;padding-top: 10px;">{{content}}</el-row>
+      <el-row style="font-size: 16px;padding-top: 10px;white-space: pre-wrap;">{{content}}</el-row>
       <span slot="footer" class="dialog-footer">
         <el-button type="primary" @click="watchDialogVisible = false">返回</el-button>
       </span>
