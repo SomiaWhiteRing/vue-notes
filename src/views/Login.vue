@@ -78,6 +78,20 @@ export default {
     back () {
       this.inReg = false
     },
+    getdate () {
+      const date = new Date()
+      const year = date.getFullYear()
+      let month = date.getMonth() + 1
+      let strDate = date.getDate()
+      if (month >= 1 && month <= 9) {
+        month = '0' + month
+      }
+      if (strDate >= 0 && strDate <= 9) {
+        strDate = '0' + strDate
+      }
+      const currentdate = year + '/' + month + '/' + strDate
+      return currentdate
+    },
     login () {
       if (localStorage.getItem('password') === null) {
         this.$notify({
@@ -99,11 +113,6 @@ export default {
     reg () {
       if (this.NewPass === this.rePass) {
         if ((localStorage.getItem('password') === null) || (localStorage.getItem('password') === this.password)) {
-          this.$notify({
-            title: '密码设置成功!',
-            message: '现在返回登陆界面',
-            type: 'success'
-          })
           if (localStorage.getItem('password') === null) {
             store.commit('addItem', {
               title: '欢迎来到轻记事！',
@@ -111,6 +120,11 @@ export default {
               date: this.getdate()
             })
           }
+          this.$notify({
+            title: '密码设置成功!',
+            message: '现在返回登陆界面',
+            type: 'success'
+          })
           localStorage.setItem('password', this.NewPass)
           this.password = this.NewPass
           this.inReg = false
