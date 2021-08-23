@@ -63,7 +63,8 @@ export default {
     add () {
       store.commit('addItem', {
         title: this.title,
-        content: this.content
+        content: this.content,
+        date: this.getdate()
       })
       this.title = ''
       this.content = ''
@@ -71,6 +72,20 @@ export default {
     },
     back () {
       this.$router.push('/home/list')
+    },
+    getdate () {
+      const date = new Date()
+      const year = date.getFullYear()
+      let month = date.getMonth() + 1
+      let strDate = date.getDate()
+      if (month >= 1 && month <= 9) {
+        month = '0' + month
+      }
+      if (strDate >= 0 && strDate <= 9) {
+        strDate = '0' + strDate
+      }
+      const currentdate = year + '/' + month + '/' + strDate
+      return currentdate
     }
   }
 }

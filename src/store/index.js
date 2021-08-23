@@ -11,6 +11,9 @@ export default new Vuex.Store({
   mutations: {
     addItem (state, value) {
       state.lists.push(value)
+    },
+    deleteItem (state, value) {
+      state.lists.splice(value.index, 1)
     }
   },
   actions: {
