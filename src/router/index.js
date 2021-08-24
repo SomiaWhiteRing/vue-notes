@@ -8,6 +8,10 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
+    redirect: '/login'
+  },
+  {
+    path: '/login',
     name: 'Login',
     component: Login
   },
@@ -44,6 +48,28 @@ const routes = [
 
 const router = new VueRouter({
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  // to.name是登录路由的名字
+  if (to.name !== 'Login') {
+    // token思路就是登录成功之后保存起来，然后下面拿来用
+    const token = sessionStorage.getItem('token')
+    // 判断token是否已经保存了
+    if (token) {
+      // 成功跳转
+      next()
+    } else {
+      Vue.prototype.$message({
+        type: 'error',
+        message: '请先登录'
+      })
+      next('/')
+    }
+  } else {
+    // 不能把所有路由都拦截拦，要留个登陆路由
+    next()
+  }
 })
 
 export default router

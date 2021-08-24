@@ -107,7 +107,7 @@ export default {
           title: '登录成功！',
           type: 'success'
         })
-        localStorage.setItem('Flag', 'isLogin')
+        sessionStorage.setItem('token', 'token')
         this.$router.push('/home/list')
       } else {
         this.$notify.error({

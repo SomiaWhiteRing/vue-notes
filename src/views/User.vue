@@ -4,6 +4,7 @@
       <el-card>
       <el-row><el-button type="primary" icon='el-icon-edit' @click="add()">添加新记事</el-button></el-row>
       <el-row><el-button type="primary" icon='el-icon-info' @click="infoVisible = true">关于本程序</el-button></el-row>
+      <el-row><el-button type="primary" icon='el-icon-error' @click="exit()">注销</el-button></el-row>
       </el-card>
       <el-dialog
         title="关于该程序"
@@ -86,6 +87,14 @@ export default {
         this.dialogWidth = def + 'px'
         this.picWidth = '90px'
       }
+    },
+    exit () {
+      this.$notify({
+        title: '您已安全完成注销！',
+        type: 'success'
+      })
+      sessionStorage.removeItem('token')
+      this.$router.push('/login')
     }
   }
 }
