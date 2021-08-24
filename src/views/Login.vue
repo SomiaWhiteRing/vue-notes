@@ -20,7 +20,7 @@
           <el-input placeholder="若无请留空" type="text" v-model="password"/>
         </el-form-item>
         <el-form-item label="新密码">
-          <el-input type="text" v-model="NewPass"/>
+          <el-input placeholder="请输入6-20位的数字/字母组合" type="text" v-model="NewPass"/>
         </el-form-item>
         <el-form-item label="确认密码">
           <el-input type="text" v-model="rePass"/>
@@ -118,30 +118,37 @@ export default {
     reg () {
       if (this.NewPass === this.rePass) {
         if ((localStorage.getItem('password') === null) || (localStorage.getItem('password') === this.password)) {
-          if (localStorage.getItem('password') === null) {
-            store.commit('addItem', {
-              title: '欢迎来到轻记事！',
-              content: '您可以在这里自由记录您的想法，不受任何第三方服务的监控。\n现在就前往个人中心开始你的第一次记事吧！',
-              date: this.getdate()
+          if (this.NewPass.length >= 6 && this.NewPass.length <= 20) {
+            if (localStorage.getItem('password') === null) {
+              store.commit('addItem', {
+                title: '欢迎来到轻记事！',
+                content: '您可以在这里自由记录您的想法，不受任何第三方服务的监控。\n现在就前往个人中心开始你的第一次记事吧！',
+                date: this.getdate()
+              })
+            }
+            this.$notify({
+              title: '密码设置成功',
+              message: '现在返回登陆界面',
+              type: 'success'
+            })
+            localStorage.setItem('password', this.NewPass)
+            this.password = this.NewPass
+            this.inReg = false
+          } else {
+            this.$notify.error({
+              title: '密码长度不符',
+              message: '请检查密码输入是否正确'
             })
           }
-          this.$notify({
-            title: '密码设置成功！',
-            message: '现在返回登陆界面',
-            type: 'success'
-          })
-          localStorage.setItem('password', this.NewPass)
-          this.password = this.NewPass
-          this.inReg = false
         } else {
           this.$notify.error({
-            title: '密码错误！',
+            title: '密码错误',
             message: '请检查密码输入是否正确'
           })
         }
       } else {
         this.$notify.error({
-          title: '两次密码输入不相同！',
+          title: '两次密码输入不相同',
           message: '请检查密码输入是否正确'
         })
       }

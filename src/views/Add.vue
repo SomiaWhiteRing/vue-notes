@@ -12,7 +12,7 @@
       <el-form-item label="标题">
         <el-input v-model="title"></el-input>
       </el-form-item>
-      <el-form-item label="内容">
+      <el-form-item label="正文">
         <el-input type="textarea" :autosize="{ minRows: 5, maxRows: 10}" v-model="content"></el-input>
       </el-form-item>
       <el-form-item>
@@ -61,19 +61,33 @@ export default {
   // 方法集合
   methods: {
     add () {
-      store.commit('addItem', {
-        title: this.title,
-        content: this.content,
-        date: this.getdate()
-      })
-      this.$notify({
-        title: '记事已成功提交',
-        message: '返回记事列表界面',
-        type: 'success'
-      })
-      this.title = ''
-      this.content = ''
-      this.$router.push('/home/list')
+      if (this.title === '' || this.content === '') {
+        store.commit('addItem', {
+          title: this.title,
+          content: this.content,
+          date: this.getdate()
+        })
+        this.$notify({
+          title: '记事已成功提交',
+          message: '返回记事列表界面',
+          type: 'success'
+        })
+        this.title = ''
+        this.content = ''
+        this.$router.push('/home/list')
+      } else {
+        if (this.title === '') {
+          this.$notify({
+            title: '标题不能为空',
+            type: 'warning'
+          })
+        } else {
+          this.$notify({
+            title: '正文不能为空',
+            type: 'warning'
+          })
+        }
+      }
     },
     back () {
       this.$router.push('/home/list')
