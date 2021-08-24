@@ -1,24 +1,6 @@
-# vue-notes
+# 轻记事
 
-## Project setup
-```
-npm install
-```
+基于 Vue + Element 的开源本地记事应用  
+采用 Vue-router 路由守卫,防止他人未经授权访问你的数据  
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+<font color= #DCDCDC>© 2021 SomiaWhiteRing.</font>
