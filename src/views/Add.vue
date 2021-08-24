@@ -62,6 +62,18 @@ export default {
   methods: {
     add () {
       if (this.title === '' || this.content === '') { // 标题与正文非空检测
+        if (this.title === '') {
+          this.$notify({
+            title: '标题不能为空',
+            type: 'warning'
+          })
+        } else {
+          this.$notify({
+            title: '正文不能为空',
+            type: 'warning'
+          })
+        }
+      } else {
         store.commit('addItem', {
           title: this.title,
           content: this.content,
@@ -75,18 +87,6 @@ export default {
         this.title = ''
         this.content = ''
         this.$router.push('/home/list')
-      } else {
-        if (this.title === '') {
-          this.$notify({
-            title: '标题不能为空',
-            type: 'warning'
-          })
-        } else {
-          this.$notify({
-            title: '正文不能为空',
-            type: 'warning'
-          })
-        }
       }
     },
     back () {
