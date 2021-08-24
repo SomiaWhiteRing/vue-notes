@@ -6,6 +6,7 @@
       <el-row><el-button type="primary" icon='el-icon-info' @click="infoVisible = true">关于本程序</el-button></el-row>
       <el-row><el-button type="primary" icon='el-icon-error' @click="exit()">注销</el-button></el-row>
       </el-card>
+      <!-- info页 -->
       <el-dialog
         title="关于该程序"
         :width="dialogWidth"
@@ -93,7 +94,7 @@ export default {
         title: '您已安全完成注销！',
         type: 'success'
       })
-      sessionStorage.removeItem('token')
+      sessionStorage.removeItem('token') // 删除token
       this.$router.push('/login')
     }
   }

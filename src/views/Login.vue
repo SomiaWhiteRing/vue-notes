@@ -3,8 +3,8 @@
 <div style="display: flex;justify-content: center;margin-top: 150px">
   <el-card class="box-card">
     <div slot="header">
-      <span v-if="!inReg">登录</span>
-      <span v-if="inReg">修改密码</span>
+      <span v-if="!inReg">登录</span><!-- 登陆界面 -->
+      <span v-if="inReg">修改密码</span><!-- 注册界面 -->
     </div>
     <el-form ref="form" :model="form" label-width="80px" v-if="!inReg">
       <el-form-item label="密码">
@@ -93,7 +93,7 @@ export default {
       return currentdate
     },
     login () {
-      if (localStorage.getItem('password') === null) {
+      if (localStorage.getItem('password') === null) { // 初次登陆检测
         this.$notify({
           title: '您还未设置密码!',
           message: '请于修改密码界面进行初次设置',
@@ -107,8 +107,8 @@ export default {
           title: '登录成功！',
           type: 'success'
         })
-        sessionStorage.setItem('token', 'token')
-        this.$router.push('/home/list')
+        sessionStorage.setItem('token', 'token') // 登陆成功token
+        this.$router.push('/home/list') // 路由跳转
       } else {
         this.$notify.error({
           title: '您输入的密码有误!'
@@ -116,10 +116,10 @@ export default {
       }
     },
     reg () {
-      if (this.NewPass === this.rePass) {
-        if ((localStorage.getItem('password') === null) || (localStorage.getItem('password') === this.password)) {
-          if (this.NewPass.length >= 6 && this.NewPass.length <= 20) {
-            if (localStorage.getItem('password') === null) {
+      if (this.NewPass === this.rePass) { // 重复确认检测
+        if ((localStorage.getItem('password') === null) || (localStorage.getItem('password') === this.password)) { // 旧密码检测
+          if (this.NewPass.length >= 6 && this.NewPass.length <= 20) { // 密码长度检测
+            if (localStorage.getItem('password') === null) { // 初次注册检测
               store.commit('addItem', {
                 title: '欢迎来到轻记事！',
                 content: '您可以在这里自由记录您的想法，不受任何第三方服务的监控。\n现在就前往个人中心开始你的第一次记事吧！',

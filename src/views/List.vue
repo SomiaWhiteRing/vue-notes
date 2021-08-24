@@ -97,6 +97,7 @@ export default {
       }
     },
     handleWatch (index, scope) {
+      // 将选定文章的数据传入变量并在dialog上显示
       this.title = scope.title
       this.date = scope.date
       this.content = scope.content

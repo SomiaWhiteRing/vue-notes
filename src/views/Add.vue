@@ -61,7 +61,7 @@ export default {
   // 方法集合
   methods: {
     add () {
-      if (this.title === '' || this.content === '') {
+      if (this.title === '' || this.content === '') { // 标题与正文非空检测
         store.commit('addItem', {
           title: this.title,
           content: this.content,
@@ -92,7 +92,7 @@ export default {
     back () {
       this.$router.push('/home/list')
     },
-    getdate () {
+    getdate () { // 日期格式函数
       const date = new Date()
       const year = date.getFullYear()
       let month = date.getMonth() + 1
